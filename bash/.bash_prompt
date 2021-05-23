@@ -1,0 +1,8 @@
+# custom prompt
+PS1='\[\033]0;\w\007\]'
+PS1+='\[\e[1;32m\]\u\[\e[0m\] '
+PS1+='\[\e[1;36m\]\W\[\e[0m\] '
+PS1+='`git_info`'
+PS1+='\$\[\e[0m\] '
+
+export PS1
