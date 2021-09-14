@@ -52,3 +52,7 @@
 
   # Amend to last commit without change the commit message
   amend = commit --amend --no-edit
+  
+  # Shows new commits after pull
+  nc = "!git log $1@{1}..$1@{0} "
+ 
