@@ -1,6 +1,7 @@
 [user]
   email =
   name =
+  
 [core]
   autocrlf = false
   eol = lf
@@ -26,7 +27,7 @@
 
 [alias]
   # View abbreviated SHA, description, and history graph of the latest 20 commits.
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+  l = log --oneline -n 20 --graph --abbrev-commit
 
   # View the current working tree status using the short format.
   s = status -s
@@ -48,11 +49,13 @@
 
   # Remove text in a given file from git history (!CAUTION!)
   # Usage: git rfh <text_to_remove> <text_to_replace> <path/to/file>
-  rfh ="!f() { git filter-branch --tree-filter 'sed -i s/\"$1\"/\"$2\"/ -- \"$3\"'}; f"
+  rfh = filter-branch --tree-filter 'sed -i s/\"$1\"/\"$2\"/ -- \"$3\"' --force
 
   # Amend to last commit without change the commit message
   amend = commit --amend --no-edit
   
   # Shows new commits after pull
-  nc = "!git log $1@{1}..$1@{0} "
- 
+  nc = !git log --stat --oneline --graph --abbrev-commit $1@{1}..$1@{0}
+
+  # Undo Remote Push 
+	urp = !git push -f origin HEAD^:$1
