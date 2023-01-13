@@ -71,7 +71,6 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'machakann/vim-highlightedyank'
 call plug#end()
 
@@ -95,59 +94,9 @@ endfunction
 
 autocmd VimEnter * call s:openFileManager()
 
-lua << EOF
-    local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-    -- TODO validate why autocomplete is crashing thw window with rust
-    local null_ls = require("null-ls")
-    local formatting = null_ls.builtins.formatting
-    local lsp_formatting = function(bufnr)
-    vim.lsp.buf.format({
-        filter = function(client)
-            -- apply whatever logic you want (in this example, we'll only use null-ls)
-            return client.name == "null-ls"
-        end,
-        bufnr = bufnr,
-        })
-    end
-    null_ls.setup({
-        sources = {
-           
-        formatting.rustfmt.with({
-            extra_args = function(params)
-            local cargo_toml = params.root .. "/" .. "Cargo.toml"
-            local fd = vim.loop.fs_open(cargo_toml, "r", 438)
-            if not fd then
-                return
-            end
-            local stat = vim.loop.fs_fstat(fd)
-            local data = vim.loop.fs_read(fd, stat.size, 0)
-            vim.loop.fs_close(fd)
-            for _, line in ipairs(vim.split(data, "\n")) do
-                local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
-                -- regex maybe wrong.
-                if edition then
-                return { "--edition=" .. edition }
-                end
-            end
-            end
-        }),
-        formatting.autopep8,
-        formatting.shfmt,
-    },
-        on_attach = function(client, bufnr)
-            if client.supports_method("textDocument/formatting") then
-                vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    group = augroup,
-                    buffer = bufnr,
-                    callback = function()
-                        lsp_formatting(bufnr)    
-                    end,
-                })
-            end
-        end,
-    })
+autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
+lua << EOF
     require("trouble").setup({
         use_diagnostic_signs = true,
     })
@@ -155,24 +104,41 @@ lua << EOF
 
     require('github-theme').setup()
 
+    -- lsp config
     require("mason").setup()
     require("mason-lspconfig").setup()
-    require("lspconfig")["pyright"].setup({
+
+    local default_lsp_config = {
         on_attach = on_attach,
         flags = {
             debounce_text_changes = 150
         }
-    })
+    }
 
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem.snippetSupport = true
+    require("lspconfig")["pyright"].setup(default_lsp_config)
+    require("lspconfig")["dockerls"].setup(default_lsp_config)
+    require("lspconfig")["marksman"].setup(default_lsp_config)
 
     local rt = require("rust-tools")
     rt.setup({
-        server = {
-            on_attach = function(client, bufnr)
-                client.server_capabilities.document_formatting = false
-                client.server_capabilities.document_range_formatting = false
+        tools = { -- rust-tools options
+            autoSetHints = true,
+            hover_actions = {auto_focus = true},
+            inlay_hints = {
+                show_parameter_hints = false,
+                parameter_hints_prefix = "",
+                other_hints_prefix = "",
+            },
+        },
+        server = {      
+            settings = {
+            ["rust-analyzer"] = {
+                checkOnSave = {
+                    command = "clippy"
+                },
+            }
+        },
+            on_attach = function(_, bufnr)
                 -- Hover actions
                 vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, {
                     buffer = bufnr
