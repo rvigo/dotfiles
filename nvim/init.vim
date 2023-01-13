@@ -7,6 +7,8 @@ set smarttab               " Affects how tab key presses are interpreted
 set softtabstop=4          " Control how many columns Vim uses when you hit tab key
 set mouse=a                " This lets you use your mouse
 set wrap                   " Sets up line wrapping
+set scrolloff=7            " 7 lines above/below cursor when scrolling
+set clipboard=unnamedplus  " Use + register (X Window clipboard) as unnamed register
 
 " move among buffers with CTRL
 map <silent> <C-J> :bnext<CR>
@@ -30,11 +32,13 @@ noremap <silent> <C-y>     :redo<CR>
 vnoremap <silent> <C-y>    <C-C>:redo<CR>
 inoremap <silent> <C-y>    <C-O>:redo<CR>
 
-" copy (TODO validar)
-xmap("<C-c>", [["+y]])
-xmap("<C-x>", [["+x]])
-nmap("<C-v>", [["+p]])
-map("i", "<C-v>", [[<ESC>"+pa]])
+ " Copy to clipboard
+ vnoremap  <leader>c  "+y
+ nnoremap  <leader>c  "+y
+
+" " Paste from clipboard
+ nnoremap <leader>v "+p
+ vnoremap <leader>v "+p
 
 " auto install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
@@ -59,7 +63,6 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/fzf',  { 'do': { -> fzf#install() } }
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
 Plug 'editorconfig/editorconfig-vim'
-Plug 'jiangmiao/auto-pairs'
 Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'lukas-reineke/indent-blankline.nvim'
@@ -69,6 +72,7 @@ Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'machakann/vim-highlightedyank'
 call plug#end()
 
 filetype plugin indent on
@@ -93,13 +97,40 @@ autocmd VimEnter * call s:openFileManager()
 
 lua << EOF
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+    -- TODO validate why autocomplete is crashing thw window with rust
     local null_ls = require("null-ls")
     local formatting = null_ls.builtins.formatting
-
+    local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+        })
+    end
     null_ls.setup({
-        sources = { 
-        formatting.rustfmt,
-        formatting.prettier,
+        sources = {
+           
+        formatting.rustfmt.with({
+            extra_args = function(params)
+            local cargo_toml = params.root .. "/" .. "Cargo.toml"
+            local fd = vim.loop.fs_open(cargo_toml, "r", 438)
+            if not fd then
+                return
+            end
+            local stat = vim.loop.fs_fstat(fd)
+            local data = vim.loop.fs_read(fd, stat.size, 0)
+            vim.loop.fs_close(fd)
+            for _, line in ipairs(vim.split(data, "\n")) do
+                local edition = line:match([[^edition%s*=%s*%"(%d+)%"]])
+                -- regex maybe wrong.
+                if edition then
+                return { "--edition=" .. edition }
+                end
+            end
+            end
+        }),
         formatting.autopep8,
         formatting.shfmt,
     },
@@ -110,7 +141,7 @@ lua << EOF
                     group = augroup,
                     buffer = bufnr,
                     callback = function()
-                        vim.lsp.buf.format({ bufnr = bufnr })
+                        lsp_formatting(bufnr)    
                     end,
                 })
             end
@@ -139,7 +170,9 @@ lua << EOF
     local rt = require("rust-tools")
     rt.setup({
         server = {
-            on_attach = function(_, bufnr)
+            on_attach = function(client, bufnr)
+                client.server_capabilities.document_formatting = false
+                client.server_capabilities.document_range_formatting = false
                 -- Hover actions
                 vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, {
                     buffer = bufnr
