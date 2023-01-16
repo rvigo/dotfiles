@@ -1,0 +1,63 @@
+[[rust]]
+namespace = "rust"
+command = "echo 'building' && cargo build && echo 'testing' && cargo test && echo 'clippy (lint)' && cargo clippy --verbose -- -D warnings && echo 'fmt' && cargo fmt -- --check"
+description = ""
+alias = "checkup"
+tags = ["cargo", "rust", "shell"]
+
+[[gpg]]
+namespace = "gpg"
+command = "gpgconf --kill gpg-agent"
+description = "restarts gpg agent"
+alias = "restart-gpg"
+tags = ["gpg", "shell"]
+
+[[k8]]
+namespace = "k8"
+command = "minikube start && minikube dashboard &"
+description = "starts minikube and k8 dashboard"
+alias = "k8start"
+tags = ["shell", "docker", "k8"]
+
+[[k8]]
+namespace = "k8"
+command = "minikube stop"
+description = "stops minikube"
+alias = "k8stop"
+tags = ["shell", "docker", "k8"]
+
+[[cl]]
+namespace = "cl"
+command = "code ~/.config/cl/commands.toml"
+alias = "open_commands"
+
+[[wsl]]
+namespace = "wsl"
+command = "sudo apt update && sudo apt full-upgrade -y && sudo apt autoremove && brew update && brew upgrade && brew cleanup"
+alias = "update"
+tags = ["ubuntu", "linux", "brew", "shell"]
+
+[[git]]
+namespace = "git"
+command = "echo $(git describe --tags --abbrev=0)"
+description = "show latest tag"
+alias = "tag"
+
+[[git]]
+namespace = "git"
+command = "git log --pretty=oneline --abbrev-commit --no-decorate --no-color $(git describe --abbrev=0)..HEAD"
+description = "shows the latest changes since last tag until head"
+alias = "lc"
+tags = ["git"]
+
+[[configs]]
+namespace = "configs"
+command = "cd ~/.config/$(ls ~/.config | fzf)"
+description = "enter config dir"
+alias = "config"
+tags = ["fzf", "config", "dir"]
+
+[[localstack]]
+namespace = "localstack"
+command = "aws --endpoint-url=http://localhost:4566"
+alias = "laws"
