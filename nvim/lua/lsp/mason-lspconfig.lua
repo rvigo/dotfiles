@@ -7,6 +7,14 @@ local default_lsp_config = {
     }
 }
 
-require('lspconfig')['pyright'].setup(default_lsp_config)
-require('lspconfig')['dockerls'].setup(default_lsp_config)
-require('lspconfig')['marksman'].setup(default_lsp_config)
+local lspconfig = require('lspconfig')
+lspconfig['pyright'].setup(default_lsp_config)
+lspconfig['dockerls'].setup(default_lsp_config)
+lspconfig['marksman'].setup(default_lsp_config)
+lspconfig['bashls'].setup(default_lsp_config)
+lspconfig['yamlls'].setup(default_lsp_config)
+lspconfig['sqlls'].setup(default_lsp_config)
+lspconfig['terraformls'].setup(default_lsp_config)
+lspconfig['graphql'].setup(default_lsp_config)
+lspconfig['sumneko_lua'].setup(default_lsp_config)
+lspconfig['vimls'].setup(default_lsp_config)

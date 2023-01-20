@@ -55,17 +55,17 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'simrat39/rust-tools.nvim'
 Plug 'williamboman/mason.nvim'
 Plug 'williamboman/mason-lspconfig.nvim'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+Plug 'ms-jpq/coq_nvim', { 'branch': 'coq'}
 Plug 'nvim-tree/nvim-tree.lua'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'junegunn/fzf',  { 'do': { -> fzf#install() } }
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v3.*' }
-Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'}
+Plug 'akinsho/toggleterm.nvim', { 'tag' : 'v2.*'}
 Plug 'jeffkreeftmeijer/vim-numbertoggle'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'folke/trouble.nvim'
-Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'mg979/vim-visual-multi', { 'branch': 'master'}
 Plug 'justinmk/vim-sneak'
 Plug 'preservim/nerdcommenter'
 Plug 'nvim-lua/plenary.nvim'
@@ -76,6 +76,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'goolord/alpha-nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'rcarriga/nvim-notify'
 call plug#end()
 
 filetype plugin indent on
@@ -105,6 +106,7 @@ lua << EOF
     require('plugins.indent-blankline')
     require('plugins.gitsigns')
     require('plugins.telescope')
+    require('plugins.notify')
 
     -- Enable diagnostics
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
