@@ -76,7 +76,6 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'goolord/alpha-nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
 Plug 'nvim-telescope/telescope-project.nvim'
-Plug 'folke/todo-comments.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -106,7 +105,6 @@ lua << EOF
     require('plugins.indent-blankline')
     require('plugins.gitsigns')
     require('plugins.telescope')
-    require('plugins.todo')
 
     -- Enable diagnostics
     vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -131,7 +129,7 @@ lua << EOF
         c = true
     }
 
-    -- TODO
+    -- TODO fix me
     vim.cmd([[
         set signcolumn=yes
         autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
