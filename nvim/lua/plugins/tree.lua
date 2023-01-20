@@ -1,32 +1,32 @@
-require("nvim-tree").setup({
+require('nvim-tree').setup({
     view = {
         adaptive_size = true,
         hide_root_folder = true,
         mappings = {
             list = {{
-                key = "<C-o>",
-                action = "vsplit"
+                key = '<C-o>',
+                action = 'vsplit'
             }, {
-                key = "<ESC>",
-                action = "close"
+                key = '<ESC>',
+                action = 'close'
             }, {
-                key = "..",
-                action = "dir_up"
+                key = '..',
+                action = 'dir_up'
             }, {
-                key = "cd",
-                action = "cd"
+                key = 'cd',
+                action = 'cd'
             }, {
-                key = "w",
-                action = "expand_all"
+                key = 'w',
+                action = 'expand_all'
             }, {
-                key = "e",
-                action = "collapse_all"
+                key = 'e',
+                action = 'collapse_all'
             }, {
-                key = "<C-k>",
-                action = ""
+                key = '<C-k>',
+                action = ''
             }, {
-                key = "<C-t>",
-                action = "" -- unset default
+                key = '<C-t>',
+                action = '' -- unset default
             }}
         }
     },
@@ -47,12 +47,12 @@ require("nvim-tree").setup({
         }
     }
 })
-vim.cmd([[
-    function s:openFileManager()
-        if !argc()
-            NvimTreeFocus
-        endif
-    endfunction
-  
-    autocmd VimEnter * call s:openFileManager()
-]])
+-- vim.cmd([[
+--     function s:openFileManager()
+--         if !argc()
+--             NvimTreeFocus
+--         endif
+--     endfunction
+
+--     autocmd VimEnter * call s:openFileManager()
+-- ]])

@@ -1,124 +1,128 @@
-require("bufferline").setup({
+require('bufferline').setup({
     options = {
-        buffer_close_icon = "",
-        close_command = "bd %d",
-        close_icon = "",
+        mode = "tabs",
+        numbers = "ordinal",
+        buffer_close_icon = '',
+        close_command = 'bd %d',
+        close_icon = '',
         indicator = {
-            style = "icon",
-            icon = " "
+            style = 'icon',
+            icon = ' '
         },
-        left_trunc_marker = "",
-        modified_icon = "●",
+        left_trunc_marker = '',
+        modified_icon = '●',
         offsets = {{
-            filetype = "NvimTree",
-            text = "File Explorer",
-            text_align = "center"
+            filetype = 'NvimTree',
+            text = 'File Explorer',
+            text_align = 'center',
+            separator = true
         }},
-        right_mouse_command = "Bdelete! %d",
-        right_trunc_marker = "",
-
+        right_mouse_command = 'Bdelete! %d',
+        right_trunc_marker = '',
+        enforce_regular_tabs = true,
+        always_show_bufferline = true,
         show_close_icon = false,
         show_tab_indicators = true
     },
     highlights = {
         fill = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "StatusLineNC"
+                attribute = 'bg',
+                highlight = 'StatusLineNC'
             }
         },
         background = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "StatusLine"
+                attribute = 'bg',
+                highlight = 'StatusLine'
             }
         },
         buffer_visible = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             }
         },
         buffer_selected = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             }
         },
         separator = {
             fg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "StatusLine"
+                attribute = 'bg',
+                highlight = 'StatusLine'
             }
         },
         separator_selected = {
             fg = {
-                attribute = "fg",
-                highlight = "Special"
+                attribute = 'fg',
+                highlight = 'Special'
             },
             bg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             }
         },
         separator_visible = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "StatusLineNC"
+                attribute = 'bg',
+                highlight = 'StatusLineNC'
             }
         },
         close_button = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "StatusLine"
+                attribute = 'bg',
+                highlight = 'StatusLine'
             }
         },
         close_button_selected = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             }
         },
         close_button_visible = {
             fg = {
-                attribute = "fg",
-                highlight = "Normal"
+                attribute = 'fg',
+                highlight = 'Normal'
             },
             bg = {
-                attribute = "bg",
-                highlight = "Normal"
+                attribute = 'bg',
+                highlight = 'Normal'
             }
         }
     }

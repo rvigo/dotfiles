@@ -1,4 +1,4 @@
-require("toggleterm").setup({
+require('toggleterm').setup({
     size = 22,
     open_mapping = [[<C-t>]],
     hide_numbers = true, -- hide the number column in toggleterm buffers

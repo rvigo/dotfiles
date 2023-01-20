@@ -1,6 +1,6 @@
 set number                 " Sets line numbers
 set autoindent             " Sets auto indentation
-set expandtab              " convert tab to spaces 
+set expandtab              " convert tab to spaces
 set tabstop=4              " Sets tabstop
 set shiftwidth=4           " For proper indentation
 set smarttab               " Affects how tab key presses are interpreted
@@ -72,6 +72,11 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'folke/which-key.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'goolord/alpha-nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' }
+Plug 'nvim-telescope/telescope-project.nvim'
+Plug 'folke/todo-comments.nvim'
 call plug#end()
 
 filetype plugin indent on
@@ -82,25 +87,29 @@ autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()
 
 lua << EOF
     -- plugins configs
-    -- NOTE keep the "requires" in this order
-    require("lsp.mason")
-    require("lsp.mason-lspconfig")    
-    require("lsp.rust-tools")
-    require("themes.vscode")
-    require("plugins.bufferline")
-    require("plugins.whichkey")
-    require("plugins.tree")
-    require("plugins.toggleterm")
-    require("plugins.treesitter")
-    require("plugins.trouble")
-    require("plugins.coq")
-    require("plugins.vimspector")
-    require("plugins.lualine")
-    require("plugins.nerdcommenter")
-    require("plugins.indent-blankline")
+    -- NOTE keep the 'requires' in this order
+    require('themes.vscode')
+    require('themes.alpha')
+    require('lsp.mason')
+    require('lsp.mason-lspconfig')
+    require('lsp.rust-tools')
+    require('plugins.whichkey')
+    require('plugins.bufferline')
+    require('plugins.tree')
+    require('plugins.toggleterm')
+    require('plugins.treesitter')
+    require('plugins.trouble')
+    require('plugins.coq')
+    require('plugins.vimspector')
+    require('plugins.lualine')
+    require('plugins.nerdcommenter')
+    require('plugins.indent-blankline')
+    require('plugins.gitsigns')
+    require('plugins.telescope')
+    require('plugins.todo')
 
     -- Enable diagnostics
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+    vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
         virtual_text = false,
         signs = true,
         update_in_insert = true
@@ -111,7 +120,7 @@ lua << EOF
         buffer = buffer
     }
 
-    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, keymap_opts)
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, keymap_opts)
 
     vim.opt.smartindent = true
     vim.opt.cursorline = true
@@ -122,10 +131,10 @@ lua << EOF
         c = true
     }
 
-    -- TODO 
+    -- TODO
     vim.cmd([[
         set signcolumn=yes
         autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
     ]])
-   
+
 EOF

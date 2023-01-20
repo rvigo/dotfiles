@@ -28,4 +28,6 @@ require('vscode').setup({
 })
 
 -- hides the "~" at end of file
-vim.cmd([[hi EndOfBuffer    guifg=#24292e]])
+vim.cmd([[hi EndOfBuffer guifg=#24292e]])
+vim.cmd([[hi CustomInlay guifg=#6f6c6f gui=italic]])
+vim.cmd([[hi GitSignsCurrentLineBlame guifg=#6f6c6f]])

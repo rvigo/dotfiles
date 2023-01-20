@@ -1,6 +1,6 @@
 require('nvim-treesitter.configs').setup({
-    ensure_installed = {"lua", "rust", "toml", "python", "yaml", "json", "java", "kotlin", "bash", "dockerfile", "json",
-                        "markdown", "terraform"},
+    ensure_installed = {'lua', 'rust', 'toml', 'python', 'yaml', 'json', 'java', 'kotlin', 'bash', 'dockerfile', 'json',
+                        'markdown', 'terraform'},
     auto_install = true,
     highlight = {
         enable = true

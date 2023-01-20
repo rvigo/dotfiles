@@ -11,6 +11,10 @@ local keymaps = {
         d = {':bdelete<CR>', 'BufferDelete'}
     },
     p = {
+        name = 'project',
+        o = {':Telescope project<CR>', 'Open project'}
+    },
+    P = {
         name = 'vim-plug',
         i = {':PlugInstall<CR>', 'plug-install'},
         u = {':PlugUpdate<CR>', 'plug-update'},
@@ -51,6 +55,12 @@ local keymaps = {
     n = {
         name = 'neovim',
         s = {':source $MYVIMRC<CR>', 're-source nvim configs'}
+    },
+    T = {
+        name = 'telescope',
+        f = {':Telescope find_files<CR>', 'Find Files'},
+        g = {':Telescope live_grep<CR>', 'Grep Files'},
+        b = {':Telescope buffers<CR>', 'Find Buffers'}
     }
 }
 
@@ -111,6 +121,7 @@ local opts = {
     }
 }
 wk.register(keymaps, {
-    prefix = '<leader>'
+    prefix = '<leader>',
+    mode = {'n', 'x'}
 })
 wk.setup(opts)
