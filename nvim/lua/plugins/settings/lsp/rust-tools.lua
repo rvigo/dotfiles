@@ -7,7 +7,6 @@ rt.setup({
         },
         inlay_hints = {
             show_parameter_hints = false,
-            highlight = 'CustomInlay'
         }
     },
     server = {

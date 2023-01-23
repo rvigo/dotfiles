@@ -1,4 +1,4 @@
 return {
-    'preservim/nerdcommenter',
+    'machakann/vim-highlightedyank',
     event = 'User BufReadRealFile'
 }

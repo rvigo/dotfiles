@@ -3,65 +3,71 @@ local wk = require('which-key')
 local keymaps = {
     f = {
         name = 'file explorer',
-        t = {':NvimTreeToggle<CR>', 'Toggle NvimTree'},
-        f = {'::NvimTreeFocus<CR>', 'Focus NvimTree'}
+        t = { ':NvimTreeToggle<CR>', 'Toggle NvimTree' },
+        f = { '::NvimTreeFocus<CR>', 'Focus NvimTree' }
     },
     b = {
         name = 'buffer',
-        d = {':bdelete<CR>', 'BufferDelete'}
+        d = { ':bdelete<CR>', 'BufferDelete' }
     },
     p = {
         name = 'project',
-        o = {':Telescope project<CR>', 'Open project'}
+        o = { ':Telescope project<CR>', 'Open project' }
     },
     P = {
         name = 'vim-plug',
-        i = {':PlugInstall<CR>', 'plug-install'},
-        u = {':PlugUpdate<CR>', 'plug-update'},
-        g = {':PlugUpgrade<CR>', 'plug-upgrade'},
-        c = {':PlugClean<CR>', 'plug-clean'}
+        i = { ':PlugInstall<CR>', 'plug-install' },
+        u = { ':PlugUpdate<CR>', 'plug-update' },
+        g = { ':PlugUpgrade<CR>', 'plug-upgrade' },
+        c = { ':PlugClean<CR>', 'plug-clean' }
     },
     c = {
         name = 'code',
-        a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action'},
-        d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration'},
-        D = {'<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition'},
-        i = {'<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation'},
-        k = {'<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature'},
-        K = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover'},
-        r = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
-        f = {'<cmd>lua vim.lsp.buf.format { async = true } <CR>', 'Formatting'},
-        R = {'<cmd>vim.lsp.buf.references()<CR>', 'References'},
+        a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
+        d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
+        D = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' },
+        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
+        k = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature' },
+        K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
+        r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
+        f = { '<cmd>lua vim.lsp.buf.format { async = true } <CR>', 'Formatting' },
+        R = { '<cmd>vim.lsp.buf.references()<CR>', 'References' },
         c = {
             name = 'comment',
-            t = {'<plug>NERDCommenterToggle<CR>', 'Toggle Comment'},
-            i = {'<plug>NERDCommenterInvert<CR>', 'Invert Comment'},
-            c = {'<plug>NERDCommenterComment<CR>', 'Comment'}
+            t = { '<plug>NERDCommenterToggle<CR>', 'Toggle Comment' },
+            i = { '<plug>NERDCommenterInvert<CR>', 'Invert Comment' },
+            c = { '<plug>NERDCommenterComment<CR>', 'Comment' }
         }
     },
     w = {
         name = 'windows',
-        ['='] = {'<C-W>=', 'balance-window'},
-        v = {':vsplit<CR>', 'split-vertical'},
-        h = {':split<CR>', 'split-horizontal'},
-        n = {'<C-W>n', 'next-window'},
-        d = {'<C-W>c', 'delete-window'}
+        ['='] = { '<C-W>=', 'balance-window' },
+        v = { ':vsplit<CR>', 'split-vertical' },
+        h = { ':split<CR>', 'split-horizontal' },
+        n = { '<C-W>n', 'next-window' },
+        d = { '<C-W>c', 'delete-window' }
     },
     t = {
         name = 'trouble',
-        t = {':TroubleToggle<CR>', 'toggle Trouble'},
-        r = {':TroubleRefresh<CR>', 'refresh Trouble'}
+        t = { ':TroubleToggle<CR>', 'toggle Trouble' },
+        r = { ':TroubleRefresh<CR>', 'refresh Trouble' }
     },
     n = {
         name = 'neovim',
-        s = {':source $MYVIMRC<CR>', 're-source nvim configs'}
+        s = { ':source $MYVIMRC<CR>', 're-source nvim configs' }
     },
     T = {
         name = 'telescope',
-        f = {':Telescope find_files<CR>', 'Find Files'},
-        g = {':Telescope live_grep<CR>', 'Grep Files'},
-        b = {':Telescope buffers<CR>', 'Find Buffers'}
-    }
+        f = { ':Telescope find_files<CR>', 'find files' },
+        g = { ':Telescope live_grep<CR>', 'grep files' },
+        b = { ':Telescope buffers<CR>', 'find buffers' }
+    },
+    g = {
+        name = 'git',
+        d = { ':Gitsigns diffthis<CR>', 'show diff' },
+        b = { ':Gitsigns toggle_current_line_blame', 'toggle blame line' }
+    },
+    A = { ':Alpha<CR>', "Open alpha" },
 }
 
 local opts = {
@@ -94,8 +100,8 @@ local opts = {
     window = {
         border = 'rounded', -- none, single, double, shadow
         position = 'bottom', -- bottom, top
-        margin = {1, 0, 1, 0}, -- extra window margin [top, right, bottom, left]
-        padding = {2, 2, 2, 2}, -- extra window padding [top, right, bottom, left]
+        margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
+        padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
         winblend = 0
     },
     layout = {
@@ -112,16 +118,16 @@ local opts = {
     },
 
     ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
-    hidden = {'<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ '}, -- hide mapping boilerplate
+    hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
     triggers = 'auto', -- automatically setup triggers
     triggers_blacklist = {
-        i = {'j', 'k'},
-        v = {'j', 'k'}
+        i = { 'j', 'k' },
+        v = { 'j', 'k' }
     }
 }
 wk.register(keymaps, {
     prefix = '<leader>',
-    mode = {'n', 'x'}
+    mode = { 'n', 'x' }
 })
 wk.setup(opts)

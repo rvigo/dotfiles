@@ -1,4 +1,17 @@
-require('mason-lspconfig').setup()
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        'sumneko_lua',
+        'rust_analyzer',
+        'pyright',
+        'marksman',
+        'yamlls',
+        'dockerls',
+        'bashls',
+        'graphql',
+        'sqlls',
+        'vimls'
+    },
+})
 
 local default_lsp_config = {
     on_attach = on_attach,

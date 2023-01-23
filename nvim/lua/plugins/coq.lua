@@ -1,6 +1,8 @@
-vim.g.coq_settings = {
-    ['keymap.jump_to_mark'] = null,
-    ['auto_start'] = 'shut-up',
-    ['clients.snippets.warn'] = {}
+return {
+    'ms-jpq/coq_nvim',
+    branch = 'coq',
+    event = 'User BufReadRealFile',
+    config = function()
+        require('plugins.settings.coq')
+    end
 }
-require('coq')

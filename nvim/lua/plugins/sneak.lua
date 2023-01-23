@@ -1,4 +1,4 @@
 return {
-    'preservim/nerdcommenter',
+    'justinmk/vim-sneak',
     event = 'User BufReadRealFile'
 }

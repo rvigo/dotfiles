@@ -1,4 +1,4 @@
 return {
-    'preservim/nerdcommenter',
+    'jeffkreeftmeijer/vim-numbertoggle',
     event = 'User BufReadRealFile'
 }
