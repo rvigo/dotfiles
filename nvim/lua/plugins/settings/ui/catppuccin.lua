@@ -7,7 +7,11 @@ require('catppuccin').setup({
         treesitter = true,
         nvimtree = true,
         mason = true,
-        gitsigns = true
+        gitsigns = true,
+        illuminate = true,
+        lsp_trouble = true,
+        cmp = true,
+        symbols_outline = true
     }
 })
 

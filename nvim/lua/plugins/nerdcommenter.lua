@@ -1,4 +1,6 @@
 return {
     'preservim/nerdcommenter',
-    event = 'User BufReadRealFile'
+    config = function()
+        require('plugins.settings.nerdcommenter')
+    end
 }

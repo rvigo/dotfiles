@@ -1,4 +1,4 @@
-vim.o.timeoutlen = 300
+vim.opt.timeoutlen = 300
 local wk = require('which-key')
 local keymaps = {
     f = {
@@ -14,29 +14,26 @@ local keymaps = {
         name = 'project',
         o = { ':Telescope project<CR>', 'Open project' }
     },
-    P = {
-        name = 'vim-plug',
-        i = { ':PlugInstall<CR>', 'plug-install' },
-        u = { ':PlugUpdate<CR>', 'plug-update' },
-        g = { ':PlugUpgrade<CR>', 'plug-upgrade' },
-        c = { ':PlugClean<CR>', 'plug-clean' }
-    },
     c = {
         name = 'code',
-        a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code Action' },
-        d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration' },
-        D = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'Definition' },
-        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'Implementation' },
-        k = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'Signature' },
-        K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'Hover' },
-        r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename' },
-        f = { '<cmd>lua vim.lsp.buf.format { async = true } <CR>', 'Formatting' },
-        R = { '<cmd>vim.lsp.buf.references()<CR>', 'References' },
+        a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code Action' },
+        d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration' },
+        D = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'definition' },
+        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
+        k = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature' },
+        K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'hover' },
+        r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename' },
+        f = { '<cmd>lua vim.lsp.buf.format { async = true } <CR>', 'formatting' },
+        R = { '<cmd>vim.lsp.buf.references()<CR>', 'feferences' },
         c = {
             name = 'comment',
-            t = { '<plug>NERDCommenterToggle<CR>', 'Toggle Comment' },
-            i = { '<plug>NERDCommenterInvert<CR>', 'Invert Comment' },
-            c = { '<plug>NERDCommenterComment<CR>', 'Comment' }
+            t = { '<plug>NERDCommenterToggle<CR>', 'toggle Comment' },
+            i = { '<plug>NERDCommenterInvert<CR>', 'invert Comment' },
+            c = { '<plug>NERDCommenterComment<CR>', 'comment' }
+        },
+        s = {
+            name = 'symbols',
+            t = { ':SymbolsOutline<cr>', 'toggle Symbols tree' }
         }
     },
     w = {
@@ -68,6 +65,10 @@ local keymaps = {
         b = { ':Gitsigns toggle_current_line_blame', 'toggle blame line' }
     },
     A = { ':Alpha<CR>', "Open alpha" },
+    l = {
+        name = 'Lsp',
+        r = { ':LspRestart', 'restart lsp' }
+    }
 }
 
 local opts = {

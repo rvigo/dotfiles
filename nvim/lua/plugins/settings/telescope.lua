@@ -28,11 +28,12 @@ require('telescope').setup({
         }
     },
     extensions = {
+        ['ui-select'] = { require('telescope.themes').get_dropdown() },
         project = {
             theme = 'dropdown',
             base_dirs = {
                 {
-                    '~/some/dir',
+                    '~/projetos/',
                     max_depth = 3
                 }
             },
@@ -43,3 +44,4 @@ require('telescope').setup({
 })
 require('telescope').load_extension('project')
 require('telescope').load_extension('notify')
+require('telescope').load_extension('ui-select')

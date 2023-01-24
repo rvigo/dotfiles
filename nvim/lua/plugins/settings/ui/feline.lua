@@ -7,11 +7,9 @@ feline.setup({
         filetypes = {
             '^NvimTree$',
             '^vim-plug$',
-            '^alpha$',
+            '^alpha$'
         },
-        buftypes = {
-            '^terminal$',
-        },
-        bufnames = {},
+        buftypes = { '^terminal$' },
+        bufnames = {}
     }
 })
