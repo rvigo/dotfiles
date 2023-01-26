@@ -58,3 +58,14 @@ require('nvim-tree').setup({
         }
     }
 })
+
+-- mapping keys to which-key
+local mappings = {
+    f = {
+        name = 'file explorer',
+        t = { ':NvimTreeToggle<CR>', 'toggle NvimTree' },
+        f = { ':NvimTreeFocus<CR>', 'focus NvimTree' }
+    }
+}
+
+require('which-key').register(mappings, { mode = { 'n', 'x' }, prefix = '<leader>' })

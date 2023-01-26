@@ -23,10 +23,8 @@ dashboard.section.buttons.val = {
 }
 
 local function footer()
-    local total_plugins = require("lazy").stats().count
-    local loaded_plugins = require("lazy").stats().loaded
-    local load_time = require("lazy").stats().startuptime
-    return " " .. total_plugins .. " plugins (" .. loaded_plugins .. " loaded in " .. load_time .. " ms)"
+    local total_plugins = require('lazy').stats().count
+    return ' ' .. total_plugins .. ' plugins'
 end
 
 dashboard.section.footer.val = footer()
@@ -41,3 +39,9 @@ vim.api.nvim_create_autocmd({ 'FileType' }, {
         vim.wo.foldenable = false
     end
 })
+
+-- mapping keys to which-key
+local mappings = {
+    A = { ':Alpha<CR>', 'Open alpha' },
+}
+require('which-key').register(mappings, { prefix = '<leader>', mode = { 'n', 'v' } })

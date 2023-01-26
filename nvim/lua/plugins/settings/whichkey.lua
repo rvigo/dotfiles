@@ -1,36 +1,21 @@
 vim.opt.timeoutlen = 300
 local wk = require('which-key')
 local keymaps = {
-    f = {
-        name = 'file explorer',
-        t = { ':NvimTreeToggle<CR>', 'Toggle NvimTree' },
-        f = { '::NvimTreeFocus<CR>', 'Focus NvimTree' }
-    },
     b = {
         name = 'buffer',
-        d = { ':bdelete<CR>', 'BufferDelete' }
-    },
-    p = {
-        name = 'project',
-        o = { ':Telescope project<CR>', 'Open project' }
+        d = { ':bdelete<CR>', 'delete (close) buffer' }
     },
     c = {
         name = 'code',
-        a = { '<cmd>lua vim.lsp.buf.code_action()<CR>', 'code Action' },
-        d = { '<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration' },
-        D = { '<cmd>lua vim.lsp.buf.definition()<CR>', 'definition' },
-        i = { '<cmd>lua vim.lsp.buf.implementation()<CR>', 'implementation' },
-        k = { '<cmd>lua vim.lsp.buf.signature_help()<CR>', 'signature' },
-        K = { '<cmd>lua vim.lsp.buf.hover()<CR>', 'hover' },
-        r = { '<cmd>lua vim.lsp.buf.rename()<CR>', 'rename' },
-        f = { '<cmd>lua vim.lsp.buf.format { async = true } <CR>', 'formatting' },
-        R = { '<cmd>vim.lsp.buf.references()<CR>', 'feferences' },
-        c = {
-            name = 'comment',
-            t = { '<plug>NERDCommenterToggle<CR>', 'toggle Comment' },
-            i = { '<plug>NERDCommenterInvert<CR>', 'invert Comment' },
-            c = { '<plug>NERDCommenterComment<CR>', 'comment' }
-        },
+        a = { ':lua vim.lsp.buf.code_action()<CR>', 'code action' },
+        d = { ':lua vim.lsp.buf.declaration()<CR>', 'declaration' },
+        D = { ':lua vim.lsp.buf.definition()<CR>', 'definition' },
+        i = { ':lua vim.lsp.buf.implementation()<CR>', 'implementation' },
+        k = { ':lua vim.lsp.buf.signature_help()<CR>', 'signature' },
+        K = { ':lua vim.lsp.buf.hover()<CR>', 'hover' },
+        r = { ':lua vim.lsp.buf.rename()<CR>', 'rename' },
+        f = { ':lua vim.lsp.buf.format()<CR>', 'formatting' },
+        R = { ':lua vim.lsp.buf.references()<CR>', 'references' },
         s = {
             name = 'symbols',
             t = { ':SymbolsOutline<cr>', 'toggle Symbols tree' }
@@ -44,30 +29,18 @@ local keymaps = {
         n = { '<C-W>n', 'next-window' },
         d = { '<C-W>c', 'delete-window' }
     },
-    t = {
-        name = 'trouble',
-        t = { ':TroubleToggle<CR>', 'toggle Trouble' },
-        r = { ':TroubleRefresh<CR>', 'refresh Trouble' }
-    },
-    n = {
-        name = 'neovim',
+    m = {
+        name = 'misc',
         s = { ':source $MYVIMRC<CR>', 're-source nvim configs' }
     },
-    T = {
-        name = 'telescope',
-        f = { ':Telescope find_files<CR>', 'find files' },
-        g = { ':Telescope live_grep<CR>', 'grep files' },
-        b = { ':Telescope buffers<CR>', 'find buffers' }
-    },
-    g = {
-        name = 'git',
-        d = { ':Gitsigns diffthis<CR>', 'show diff' },
-        b = { ':Gitsigns toggle_current_line_blame', 'toggle blame line' }
-    },
-    A = { ':Alpha<CR>', "Open alpha" },
-    l = {
-        name = 'Lsp',
-        r = { ':LspRestart', 'restart lsp' }
+    L = {
+        name = 'Lazy',
+        s = { ':Lazy<CR>', 'lazy show' },
+        S = { ':Lazy sync<CR>', 'lazy sync' },
+        i = { ':Lazy install<CR>', 'lazy install' },
+        c = { ':Lazy clean<CR>', 'lazy clean' },
+        u = { ':Lazy update<CR>', 'lazy update' },
+        l = { ':Lazy log<CR>', 'lazy log' },
     }
 }
 
@@ -117,7 +90,6 @@ local opts = {
         spacing = 5, -- spacing between columns
         align = 'left' -- align columns left, center or right
     },
-
     ignore_missing = true, -- enable this to hide mappings for which you didn't specify a label
     hidden = { '<silent>', '<cmd>', '<Cmd>', '<CR>', 'call', 'lua', '^:', '^ ' }, -- hide mapping boilerplate
     show_help = true, -- show help message on the command line when the popup is visible
@@ -127,8 +99,6 @@ local opts = {
         v = { 'j', 'k' }
     }
 }
-wk.register(keymaps, {
-    prefix = '<leader>',
-    mode = { 'n', 'x' }
-})
+
+wk.register(keymaps, { prefix = '<leader>', mode = { 'n', 'x' } })
 wk.setup(opts)

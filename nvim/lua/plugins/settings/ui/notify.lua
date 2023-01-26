@@ -12,7 +12,4 @@ nvim_notify.setup {
     render = 'compact',
 }
 vim.notify = nvim_notify
-
-vim.notify(
-    'nvim-notify setup successful!', 'debug', {}
-)
+vim.notify('nvim-notify setup successfully!', 'debug')

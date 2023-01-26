@@ -1,4 +1,4 @@
-vim.keymap.set('n', '<F2>', "lua vim.lsp.buf.rename()", { buffer = buffer })
+-- TODO: improve this
 vim.keymap.set("n", "<C-J>", "<cmd>bnext<CR>", { silent = true })
 vim.keymap.set("n", "<C-K>", "<cmd>bprev<CR>", { silent = true })
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>", { silent = true })

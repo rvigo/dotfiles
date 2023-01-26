@@ -33,6 +33,9 @@ require('telescope').setup({
             theme = 'dropdown',
             base_dirs = {
                 {
+                    '~/wsl_projects/',
+                    max_depth = 3
+                }, {
                     '~/projetos/',
                     max_depth = 3
                 }
@@ -45,3 +48,19 @@ require('telescope').setup({
 require('telescope').load_extension('project')
 require('telescope').load_extension('notify')
 require('telescope').load_extension('ui-select')
+
+-- mapping keys to which-key
+local mappings = {
+    T = {
+        name = 'telescope',
+        f = { ':Telescope find_files<CR>', 'find files' },
+        g = { ':Telescope live_grep<CR>', 'grep files' },
+        b = { ':Telescope buffers<CR>', 'find buffers' }
+    },
+    p = {
+        name = 'project',
+        o = { ':Telescope project<CR>', 'open project' }
+    }
+}
+
+require('which-key').register(mappings, { prefix = '<leader>', mode = { 'x', 'n', 's' } })

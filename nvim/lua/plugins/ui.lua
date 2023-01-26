@@ -52,12 +52,5 @@ return {
         config = function()
             require('plugins.settings.ui.notify')
         end
-    }, {
-        'lewis6991/gitsigns.nvim',
-        event = 'User BufReadRealFile',
-        dependencies = 'nvim-lua/plenary.nvim',
-        config = function()
-            require('plugins.settings.ui.gitsigns')
-        end
-    }
+    },
 }

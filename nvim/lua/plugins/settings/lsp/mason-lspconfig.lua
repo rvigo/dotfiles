@@ -13,6 +13,20 @@ require('mason-lspconfig').setup({
     },
 })
 
+-- format code on save if the client supports it
+local function on_attach(client, bufnr)
+    if client.supports_method('textDocument/formatting') then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd('BufWritePre', {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                vim.lsp.buf.format()
+            end,
+        })
+    end
+end
+
 local default_lsp_config = {
     on_attach = on_attach,
     flags = {
@@ -31,3 +45,13 @@ lspconfig['terraformls'].setup(default_lsp_config)
 lspconfig['graphql'].setup(default_lsp_config)
 lspconfig['sumneko_lua'].setup(default_lsp_config)
 lspconfig['vimls'].setup(default_lsp_config)
+
+
+local mappings = {
+    l = {
+        name = 'Lsp',
+        r = { ':LspRestart<CR>', 'restart lsp' }
+    }
+}
+
+require('which-key').register(mappings, { prefix = 'l', mode = { 'n', 'x' } })
