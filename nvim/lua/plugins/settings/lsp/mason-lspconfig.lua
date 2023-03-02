@@ -1,6 +1,6 @@
 require('mason-lspconfig').setup({
     ensure_installed = {
-        'sumneko_lua',
+        'lua_ls',
         'rust_analyzer',
         'pyright',
         'marksman',
@@ -43,7 +43,7 @@ lspconfig['yamlls'].setup(default_lsp_config)
 lspconfig['sqlls'].setup(default_lsp_config)
 lspconfig['terraformls'].setup(default_lsp_config)
 lspconfig['graphql'].setup(default_lsp_config)
-lspconfig['sumneko_lua'].setup(default_lsp_config)
+lspconfig['lua_ls'].setup(default_lsp_config)
 lspconfig['vimls'].setup(default_lsp_config)
 
 
