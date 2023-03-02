@@ -4,9 +4,9 @@ autoload -Uz promptinit
 promptinit
 
 setopt prompt_subst
-setopt histignorealldups 
-setopt sharehistory 
-setopt histignorespace 
+setopt histignorealldups
+setopt sharehistory
+setopt histignorespace
 setopt histreduceblanks
 
 autoload -Uz vcs_info
@@ -50,9 +50,9 @@ export EDITOR=$(which nvim)
 export VISUAL="$EDITOR"
 export HOMEBREW_NO_ANALYTICS=1
 ZSH_HIGHLIGHT_MAXLENGTH=200
-ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=/opt/homebrew/share/zsh-syntax-highlighting/highlighters
+ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
 
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOME/.functions
 source $HOME/.aliases
 
