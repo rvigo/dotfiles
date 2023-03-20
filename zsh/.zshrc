@@ -8,7 +8,7 @@ setopt histignorealldups
 setopt sharehistory
 setopt histignorespace
 setopt histreduceblanks
-
+setopt autocd autopushd chaselinks pushdignoredups pushdminus
 autoload -Uz vcs_info
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
@@ -21,6 +21,13 @@ HISTFILE=~/.zsh_history
 # Use modern completion system
 autoload -Uz compinit
 compinit
+
+function update_title {
+    case "$TERM" in
+        xterm*|rxvt*|alacritty*) print -Pn "\e]2;%n@${HOST%%.*}: %~\a" ;;
+    esac
+}
+update_title
 
 #fix dir colors in ubuntu
 if [[ -f ~/.dircolors ]] ; then
@@ -46,28 +53,29 @@ zstyle :compinstall filename '$HOME/.zshrc'
 
 # User configuration
 
-export EDITOR=$(which nvim)
-export VISUAL="$EDITOR"
+export EDITOR=$(which vi)
+export VISUAL=$(which nvim)
 export HOMEBREW_NO_ANALYTICS=1
+export JAVA_HOME=$HOME/.sdkman/candidates/java/current
 ZSH_HIGHLIGHT_MAXLENGTH=200
 ZSH_HIGHLIGHT_HIGHLIGHTERS_DIR=$(brew --prefix)/share/zsh-syntax-highlighting/highlighters
-
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=()
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=( forward-char forward-word end-of-line )
 source $HOME/.functions
 source $HOME/.aliases
 
 # Plugins
-source ~/.zsh/plugins/git/git-prompt.zsh
-source ~/.zsh/plugins/dircycle/dircycle.zsh
-source ~/.zsh/plugins/command-not-found/command-not-found.zsh
-source ~/.zsh/plugins/aws/aws.zsh
-source ~/.zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/plugins/git/git-prompt.zsh
+source $HOME/.zsh/plugins/dircycle/dircycle.zsh
+source $HOME/.zsh/plugins/command-not-found/command-not-found.zsh
+source $HOME/.zsh/plugins/aws/aws.zsh
+source $HOME/.zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.zsh
+source $HOME/.config/cl/cl-exec-widget
 
 PROMPT="%(?:%F{green%}> :%F{red%}> )"
 PROMPT+=$'%F{cyan%}%(4~|...|)%3~ %F{yellow%}$(git_super_status)%f\n%# '
 
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/zsh-interactive-cd.plugin.zsh
-source ~/.config/cl/cl-exec-widget
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

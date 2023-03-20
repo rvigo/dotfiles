@@ -13,7 +13,7 @@ function chpwd_update_git_vars() {
 function preexec_update_git_vars() {
     case "$2" in
         git*|hub*|gh*|stg*)
-        __EXECUTED_GIT_COMMAND=1
+            __EXECUTED_GIT_COMMAND=1
         ;;
     esac
 }
@@ -34,10 +34,10 @@ add-zsh-hook preexec preexec_update_git_vars
 ## Function definitions
 function update_current_git_vars() {
     unset __CURRENT_GIT_STATUS
-
+    
     local gitstatus="$__GIT_PROMPT_DIR/gitstatus.py"
     _GIT_STATUS=$(python3 ${gitstatus} 2>/dev/null)
-     __CURRENT_GIT_STATUS=("${(@s: :)_GIT_STATUS}")
+    __CURRENT_GIT_STATUS=("${(@s: :)_GIT_STATUS}")
     GIT_BRANCH=$__CURRENT_GIT_STATUS[1]
     GIT_AHEAD=$__CURRENT_GIT_STATUS[2]
     GIT_BEHIND=$__CURRENT_GIT_STATUS[3]
@@ -48,7 +48,7 @@ function update_current_git_vars() {
     GIT_STASHED=$__CURRENT_GIT_STATUS[8]
     GIT_CLEAN=$__CURRENT_GIT_STATUS[9]
     GIT_DELETED=$__CURRENT_GIT_STATUS[10]
-
+    
     if [ -z ${ZSH_THEME_GIT_SHOW_UPSTREAM+x} ]; then
         GIT_UPSTREAM=
     else
@@ -59,38 +59,50 @@ function update_current_git_vars() {
 git_super_status() {
     precmd_update_git_vars
     if [ -n "$__CURRENT_GIT_STATUS" ]; then
-      STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH$GIT_UPSTREAM%{${reset_color}%}"
-      if [ "$GIT_BEHIND" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_BEHIND$GIT_BEHIND%{${reset_color}%}"
-      fi
-      if [ "$GIT_AHEAD" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
-      fi
-      STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
-      if [ "$GIT_STAGED" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
-      fi
-      if [ "$GIT_CONFLICTS" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
-      fi
-      if [ "$GIT_CHANGED" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
-      fi
-      if [ "$GIT_DELETED" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED$GIT_DELETED%{${reset_color}%}"
-      fi
-      if [ "$GIT_UNTRACKED" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED$GIT_UNTRACKED%{${reset_color}%}"
-      fi
-      if [ "$GIT_STASHED" -ne "0" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
-      fi
-      if [ "$GIT_CLEAN" -eq "1" ]; then
-          STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
-      fi
-      STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
-      echo "$STATUS"
+        STATUS="$ZSH_THEME_GIT_PROMPT_PREFIX$ZSH_THEME_GIT_PROMPT_BRANCH$GIT_BRANCH$GIT_UPSTREAM%{${reset_color}%}"
+        if [ "$GIT_BEHIND" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_BEHIND$GIT_BEHIND%{${reset_color}%}"
+        fi
+        if [ "$GIT_AHEAD" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_AHEAD$GIT_AHEAD%{${reset_color}%}"
+        fi
+        STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_SEPARATOR"
+        if [ "$GIT_STAGED" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STAGED$GIT_STAGED%{${reset_color}%}"
+        fi
+        if [ "$GIT_CONFLICTS" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CONFLICTS$GIT_CONFLICTS%{${reset_color}%}"
+        fi
+        if [ "$GIT_CHANGED" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CHANGED$GIT_CHANGED%{${reset_color}%}"
+        fi
+        if [ "$GIT_DELETED" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_DELETED$GIT_DELETED%{${reset_color}%}"
+        fi
+        if [ "$GIT_UNTRACKED" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_UNTRACKED$GIT_UNTRACKED%{${reset_color}%}"
+        fi
+        if [ "$GIT_STASHED" -ne "0" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_STASHED$GIT_STASHED%{${reset_color}%}"
+        fi
+        if [ "$GIT_CLEAN" -eq "1" ]; then
+            STATUS="$STATUS$ZSH_THEME_GIT_PROMPT_CLEAN"
+        fi
+        STATUS="$STATUS%{${reset_color}%}$ZSH_THEME_GIT_PROMPT_SUFFIX"
+        echo "$STATUS"
     fi
+}
+
+git_show_symbols_help() {
+    echo "staged: ●"
+    echo "conflicts: ✖"
+    echo "changed: ✚"
+    echo "deleted: -"
+    echo "behind origin: ↓"
+    echo "ahead origin: ↑"
+    echo "untracked files: …"
+    echo "stashed files: ⚑"
+    echo "clean: ✔"
 }
 
 # Default values for the appearance of the prompt.
