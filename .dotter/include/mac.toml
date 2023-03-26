@@ -1,0 +1,3 @@
+[zsh.variables]
+brew_home = "/opt/homebrew"
+os = "mac"

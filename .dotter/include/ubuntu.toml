@@ -1,0 +1,3 @@
+[zsh.variables]
+brew_home = "/home/linuxbrew/.linuxbrew"
+os = "ubuntu"

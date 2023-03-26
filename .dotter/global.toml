@@ -1,0 +1,31 @@
+[default]
+[default.variables]
+os = "linux"
+
+[mac]
+depends = ["linux"]
+
+[linux]
+depends = [
+	"shell",
+	"zsh",
+	"nvim",
+    "cl"
+]
+
+[shell.files]
+"git/.gitconfig" = "~/.gitconfig"
+
+[zsh]
+depends = ["shell"]
+
+[zsh.files]
+"zsh/.zshenv" = "~/.zshenv"
+"zsh/.zshrc" = "~/.zshrc"
+"zsh/plugins" = "~/.zsh/plugins"
+
+[nvim.files]
+nvim = "~/.config/nvim"
+
+[cl.files]
+cl = "~/.config/cl"
