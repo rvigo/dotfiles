@@ -32,8 +32,6 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 zstyle :compinstall filename '$HOME/.zshrc'
 
 ZSH_HIGHLIGHT_MAXLENGTH=200
