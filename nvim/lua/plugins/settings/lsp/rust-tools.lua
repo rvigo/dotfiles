@@ -12,8 +12,23 @@ rt.setup({
     server = {
         settings = {
             ['rust-analyzer'] = {
+                assist = {
+                    importMergeBehavior = "module",
+                    importPrefix = "by_self"
+                },
+                cargo = {
+                    loadOutDirsFromCheck = true,
+                    all_features = true
+                },
                 checkOnSave = {
+                    all_features = true,
                     command = 'clippy'
+                },
+                inlay_hints = {
+                    hideNamedConstructorHints = true,
+                },
+                rustfmt = {
+                    enableRangeFormatting = true
                 }
             }
         },

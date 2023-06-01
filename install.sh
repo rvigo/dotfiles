@@ -20,7 +20,7 @@ fi
 
 if [ ! -d "$HOME/.dotfiles" ]
 then
-    echo "Cloning xpto/x to ~/.dotfiles..."
+    echo "Cloning rvigo/dotfiles to ~/.dotfiles..."
     git clone https://github.com/rvigo/dotfiles.git "$HOME/.dotfiles"
 else
     echo "The ~/.dotfiles directory already exists. Skipping clone."

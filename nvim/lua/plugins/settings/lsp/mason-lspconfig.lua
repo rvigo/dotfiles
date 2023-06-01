@@ -30,7 +30,8 @@ end
 local default_lsp_config = {
     on_attach = on_attach,
     flags = {
-        debounce_text_changes = 150
+        allow_incremental_sync = true,
+        debounce_text_changes = 200
     }
 }
 

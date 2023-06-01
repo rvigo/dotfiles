@@ -10,7 +10,8 @@ depends = [
 	"shell",
 	"zsh",
 	"nvim",
-    "cl"
+    "cl",
+	"intellij"
 ]
 
 [shell.files]
@@ -29,3 +30,7 @@ nvim = "~/.config/nvim"
 
 [cl.files]
 cl = "~/.config/cl"
+
+# this may not work correctly in WSL 
+[intellij.files]
+"intellij/.ideavimrc" = "~/.ideavimrc"

@@ -7,17 +7,19 @@ require('bufferline').setup({
         },
         left_trunc_marker = '',
         modified_icon = '●',
-        offsets = {{
-            filetype = 'NvimTree',
-            text = 'File Explorer',
-            text_align = 'center',
-            separator = true
-        }, {
-            filetype = 'Outline',
-            text = 'Symbols',
-            text_align = 'center',
-            separator = true
-        }},
+        offsets = {
+                {
+                filetype = 'NvimTree',
+                text = 'File Explorer',
+                text_align = 'center',
+                separator = true
+            }, {
+                filetype = 'Outline',
+                text = 'Symbols',
+                text_align = 'center',
+                separator = true
+            }
+        },
         view = 'multiwindow',
         right_trunc_marker = '',
         always_show_bufferline = false,

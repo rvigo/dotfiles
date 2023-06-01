@@ -33,16 +33,12 @@ require('telescope').setup({
             theme = 'dropdown',
             base_dirs = {
                 {
-                    '~/wsl_projects/',
-                    max_depth = 3
-                }, {
-                    '~/projetos/',
+                    '~/projects/',
                     max_depth = 3
                 }
             },
             sync_with_nvim_tree = true
         }
-
     }
 })
 require('telescope').load_extension('project')

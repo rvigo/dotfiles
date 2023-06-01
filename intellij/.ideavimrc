@@ -1,0 +1,73 @@
+
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+set clipboard+=unnamed
+" Do incremental searching.
+set incsearch
+set laststatus=2
+set showmode
+set vim-paragraph-motion
+set ideastatusicon=gray
+
+" Plugins
+Plug 'machakann/vim-highlightedyank'
+" Commentary plugin
+Plug 'tpope/vim-commentary'
+
+" tabs
+noremap <C-l> gt
+noremap <C-h> gT
+" removes search highlight
+nnoremap <Space> :noh<CR>
+" jump 10 lines up and down with ctrl-k and ctrl-j
+nnoremap <C-k> 5k
+nnoremap <C-j> 5j
+
+" exists insert mode with JJ
+inoremap jj <ESC>:set rnu<CR>
+
+" shows error message popup
+nnoremap gh :action ShowErrorDescription<CR>
+
+" move lines up and down
+nnoremap K :m .-2<CR>==
+nnoremap J :m .+1<CR>==
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+
+" reformat code
+noremap <leader>cr :action ReformatCode<CR>
+" optimize imports
+noremap <leader>co :action OptimizeImports<CR>
+" reformat & optimize
+noremap <leader>ca :action ReformatCode<CR> :action OptimizeImports<CR>
+" Easier indentation
+vnoremap < <gv
+vnoremap > >gv
+vnoremap = =gv
+
+"==================================================
+" remove arrows (HARD MODE)
+cnoremap <Down> <Nop>
+cnoremap <Left> <Nop>
+cnoremap <Right> <Nop>
+cnoremap <Up> <Nop>
+
+" Remove newbie crutches in Insert Mode
+" inoremap <Down> <Nop>
+" inoremap <Left> <Nop>
+" inoremap <Right> <Nop>
+" inoremap <Up> <Nop>
+
+" Remove newbie crutches in Normal Mode
+nnoremap <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+
+" Remove newbie crutches in Visual Mode
+vnoremap <Down> <Nop>
+vnoremap <Left> <Nop>
+vnoremap <Right> <Nop>
+vnoremap <Up> <Nop>

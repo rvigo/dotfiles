@@ -1,6 +1,12 @@
 -- TODO: improve this
-vim.keymap.set("n", "<C-J>", "<cmd>bnext<CR>", { silent = true })
-vim.keymap.set("n", "<C-K>", "<cmd>bprev<CR>", { silent = true })
+if vim.g.vscode
+then
+    vim.keymap.set("n", "<C-L>", "<cmd>Tabnext<CR>", { silent = true, noremap = true })
+    vim.keymap.set("n", "<C-H>", "<cmd>Tabprevious<CR>", { silent = true, noremap = true })
+else 
+    vim.keymap.set("n", "<C-L>", "<cmd>bnext<CR>", { silent = true, noremap = true })
+    vim.keymap.set("n", "<C-H>", "<cmd>bprev<CR>", { silent = true, noremap = true })
+end
 vim.keymap.set("n", "<C-S>", "<cmd>write<CR>", { silent = true })
 vim.keymap.set("v", "<C-S>", "<C-C><cmd>write<CR>", { silent = true })
 vim.keymap.set("i", "<C-S>", "<C-O><cmd>write<CR>", { silent = true })

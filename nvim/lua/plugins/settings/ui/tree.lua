@@ -4,13 +4,13 @@ require('nvim-tree').setup({
     hijack_cursor = true,
     update_cwd = true,
     view = {
-        adaptive_size = true,
-        hide_root_folder = true,
+        width = 35,
         mappings = {
-            list = { {
-                key = '<C-o>',
-                action = 'vsplit'
-            }, {
+            list = {
+                {
+                    key = '<C-o>',
+                    action = 'vsplit'
+                }, {
                 key = '<ESC>',
                 action = 'close'
             }, {
@@ -31,7 +31,8 @@ require('nvim-tree').setup({
             }, {
                 key = '<C-t>',
                 action = '' -- unset default
-            } }
+            }
+            }
         }
     },
     filesystem_watchers = {
@@ -46,6 +47,14 @@ require('nvim-tree').setup({
         custom = { '^.git$' }
     },
     renderer = {
+        icons = {
+            show = {
+                git = true,
+                folder = true,
+                file = true
+            }
+        },
+        root_folder_label = false,
         highlight_git = true,
         indent_markers = {
             enable = true

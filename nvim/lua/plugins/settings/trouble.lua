@@ -1,8 +1,8 @@
 require('trouble').setup({
+    position = 'right',
     use_diagnostic_signs = true,
     auto_close = true
 })
-
 
 -- mapping keys to which-key
 local mappings = {

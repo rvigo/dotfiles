@@ -14,12 +14,12 @@ autoload -Uz vcs_info
 autoload -Uz compinit
 compinit
 
-function update_title {
-    case "$TERM" in
-        xterm*|rxvt*|alacritty*) print -Pn "\e]2;%n@${HOST%%.*}: %~\a" ;;
-    esac
-}
-update_title
+# function update_title {
+#     case "$TERM" in
+#         xterm*|rxvt*|alacritty*) print -Pn "\e]2;%n@${HOST%%.*}: %~\a" ;;
+#     esac
+# }
+# update_title
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -54,7 +54,6 @@ PROMPT+=$'%F{cyan%}%(4~|...|)%3~ %F{yellow%}$(git_super_status)%f\n%# '
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-source /home/rafavigo/.config/cl/cl-exec-widget
 
 # some useful aliases
 alias ls='ls -h --group-directories-first --color=auto'
@@ -64,3 +63,7 @@ alias l='ls -CF'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+alias nv='nvim'
+source /home/rafavigo/.config/cl/cl-exec-widget
+source /home/rafavigo/.config/cl/cl-exec-widget
+source /home/rafavigo/.config/cl/cl-exec-widget
