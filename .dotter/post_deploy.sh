@@ -1,5 +1,7 @@
-#!/bin/sh
+#!/bin/bash
+
 set -e
+
 echo "Running post deploy script"
 
 # Check if Homebrew is installed

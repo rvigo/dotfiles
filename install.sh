@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 if ! command -v rustc >/dev/null 2>&1; then
     echo "Rust is not installed. Installing Rust from the official website..."
@@ -31,9 +31,9 @@ echo "Running dotter..."
 
 OS=$(uname -s)
 if [ "$OS" = "Linux" ]; then
-    local="local.ubuntu.toml" 
+    os="local.ubuntu.toml" 
 elif [ "$OS" == "Darwin" ]; then
-    local="local.mac.toml"
+    os="local.mac.toml"
 fi
-echo $(pwd)
-dotter -l .dotter/$local
+
+dotter -l .dotter/$os
