@@ -1,0 +1,41 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.startupEditor": "none",
+    "editor.formatOnSave": true,
+    "editor.fontFamily": "Consolas, \"Courier New\", monospace",
+    "editor.lineNumbers": "relative",
+    "terminal.integrated.fontFamily": "Consolas, \"Courier New\", monospace",
+    "vim.easymotion": true,
+    "vim.incsearch": true,
+    "vim.useSystemClipboard": true,
+    "vim.highlightedyank.enable": true,
+    "vim.useCtrlKeys": true,
+    "vim.hlsearch": true,
+    "vim.handleKeys": {
+        "<C-a>": false,
+        "<C-f>": false,
+        "<C-d>": false,
+        "<C-y>": false
+    },
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "c-h"
+            ],
+            "after": [
+                "g",
+                "T"
+            ]
+        },
+        {
+            "before": [
+                "c-l"
+            ],
+            "after": [
+                "g",
+                "t"
+            ]
+        }
+    ],
+    "redhat.telemetry.enabled": false
+}
