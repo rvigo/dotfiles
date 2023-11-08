@@ -1,6 +1,7 @@
 [user]
   email =
   name =
+  signingKey = 
 
 [commit]
   gpgSign = true
