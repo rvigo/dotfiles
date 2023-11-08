@@ -1,9 +1,5 @@
-
-" Show a few lines of context around the cursor. Note that this makes the
-" text scroll if you mouse-click near the start or end of the window.
 set scrolloff=5
 set clipboard+=unnamed
-" Do incremental searching.
 set incsearch
 set laststatus=2
 set showmode
@@ -12,61 +8,99 @@ set ideastatusicon=gray
 
 " Plugins
 Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
 Plug 'tpope/vim-commentary'
 
-" tabs
-noremap <C-l> gt
-noremap <C-h> gT
-" removes search highlight
-nnoremap <Space> :noh<CR>
+" =============== gradle ===============
+map <leader>ge  <Action>(Gradle.ExecuteTask)
+
+" =============== goto ===============
+nnoremap gm :action GotoSuperMethod<CR>
+nnoremap gt :action GotoTest<CR>
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gD :action GotoTypeDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gI :action QuickImplementations<CR>
+
+" =============== tabs ===============
+nmap <S-Tab> <Action>(PreviousTab)
+nmap <Tab> <Action>(NextTab)
+
+nmap <leader>v :vsplit<CR>
+nmap <leader>h :split<CR>
+
+" =============== line movement ===============
+nnoremap H ^
+vnoremap H ^
+nnoremap L $
+vnoremap L $
+
 " jump 10 lines up and down with ctrl-k and ctrl-j
 nnoremap <C-k> 5k
 nnoremap <C-j> 5j
 
-" exists insert mode with JJ
-inoremap jj <ESC>:set rnu<CR>
+" move lines up and down
+" vnoremap K :m '<-2<CR>gv=gv
+vnoremap K :action MoveStatementUp<CR>
 
+" nnoremap K :m .-2<CR>==
+nnoremap K :action MoveLineUp<CR>
+
+" nnoremap J :m .+1<CR>==
+nnoremap J :action MoveLineDown<CR>
+
+" vnoremap J :m '>+1<CR>gv=gv
+vnoremap J :action MoveStatementDown<CR>
+
+" =============== errors ===============
+noremap <leader>e :action GotoNextError<CR>
+noremap <leader>E :action GotoPreviousError<CR>
 " shows error message popup
 nnoremap gh :action ShowErrorDescription<CR>
 
-" move lines up and down
-nnoremap K :m .-2<CR>==
-nnoremap J :m .+1<CR>==
-vnoremap K :m '<-2<CR>gv=gv
-vnoremap J :m '>+1<CR>gv=gv
+" =============== code actions ===============
+" rename element
+nnoremap <leader>re :action RenameElement<CR>
 
 " reformat code
 noremap <leader>cr :action ReformatCode<CR>
+
 " optimize imports
 noremap <leader>co :action OptimizeImports<CR>
+
 " reformat & optimize
 noremap <leader>ca :action ReformatCode<CR> :action OptimizeImports<CR>
+
 " Easier indentation
 vnoremap < <gv
 vnoremap > >gv
 vnoremap = =gv
 
-"==================================================
-" remove arrows (HARD MODE)
-cnoremap <Down> <Nop>
-cnoremap <Left> <Nop>
-cnoremap <Right> <Nop>
-cnoremap <Up> <Nop>
+" surround with
+vnoremap <Leader>sw :action SurroundWith<CR>
+nnoremap <Leader>sw :action SurroundWith<CR>
 
-" Remove newbie crutches in Insert Mode
-" inoremap <Down> <Nop>
-" inoremap <Left> <Nop>
-" inoremap <Right> <Nop>
-" inoremap <Up> <Nop>
+" find
+nnoremap / :action Find<CR>
 
-" Remove newbie crutches in Normal Mode
+" select all
+nmap <leader>a ggVG
+
+" =============== terminal ===============
+noremap <leader>t :action ActivateTerminalToolWindow<CR>
+
+" =============== others ===============
+" exists insert mode with JJ
+inoremap jj <ESC>:set rnu<CR>
+
+" removes search highlight
+nnoremap <Space> :noh<CR>
+
+" =============== arrows ===============
 nnoremap <Down> <Nop>
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 
-" Remove newbie crutches in Visual Mode
 vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
