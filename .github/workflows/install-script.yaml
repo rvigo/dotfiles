@@ -1,7 +1,7 @@
-name: Install and Run cript
+name: Install and Run script
 
 on: push
- 
+
 env:
   CI: 1
   HOMEBREW_NO_INSTALL_CLEANUP: 1
@@ -17,6 +17,12 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+      - name: Update Ubuntu deps
+        if: matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt-get update
+          sudo apt-get install zsh -yq
+          sudo  chsh -s $(which zsh)
       - name: Install and Run
         run: |
           chmod +x install.sh

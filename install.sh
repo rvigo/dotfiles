@@ -32,14 +32,7 @@ install_dotter() {
 }
 
 clone_repo() {
-# if [ -n "$CI" ] && [ "$(pwd)" != "$HOME" ]; then
-#     echo "moving everything to $DOTFILES_DIR"
-#     mkdir -p "$DOTFILES_DIR"
-   
-#     shopt -s dotglob
-#     mv $(pwd)/* "$DOTFILES_DIR" 
-# fi
-    if [ ! -n "$CI" ];then
+    if [ -z "$CI" ];then
         if [ ! -d "$DOTFILES_DIR" ]; then
             echo "Cloning rvigo/dotfiles to $DOTFILES_DIR ..."
             git clone https://github.com/rvigo/dotfiles.git "$DOTFILES_DIR"
@@ -54,9 +47,6 @@ clone_repo() {
 select_os() {
     if [ "$OS" = "Linux" ]; then
         DOTTER_CONFIG="local.ubuntu.toml" 
-        update_ubuntu
-        set_zsh_as_default
-
     elif [ "$OS" == "Darwin" ]; then
         DOTTER_CONFIG="local.mac.toml"
     else
@@ -65,27 +55,12 @@ select_os() {
     fi
 }
 
-update_ubuntu() {
-    echo "Updating some packages"
-    if [ -n "$CI" ]; then
-        DF="DEBIAN_FRONTEND=noninteractive "
-    fi
-
-    DF+="apt-get -qq install build-essential git-all zsh -yq"  
-    eval "apt-get -qq update && $DF"
-}
-
-set_zsh_as_default() {
-    echo "Setting 'zsh' as default shell"
-    chsh -s "$(which zsh)"
-}
-
 run_dotter() {
     echo "Running dotter..."
     if [ -n "$CI" ]; then
-        dotter -l ./.dotter/$DOTTER_CONFIG --force
+        dotter -l ./.dotter/"$DOTTER_CONFIG" --force
     else
-        dotter -l $DOTTER_CONFIG_FOLDER/$DOTTER_CONFIG --force
+        dotter -l "$DOTTER_CONFIG_FOLDER"/"$DOTTER_CONFIG" --force
     fi
 }
 
