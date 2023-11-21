@@ -1,0 +1,20 @@
+name: Vim Configuration Linting
+
+on: push
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install vint
+        run: |
+          pip install vim-vint
+      - name: Lint Vim configuration files
+        run: >-
+          find .
+          -name '.vimrc'
+          -o -name '.vim'
+          -o -name '.ideavimrc' -type f
+          | xargs vint
