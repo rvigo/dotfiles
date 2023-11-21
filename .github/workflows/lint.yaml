@@ -1,0 +1,62 @@
+name: Linting
+
+on: push
+
+jobs:
+  json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install jq -y
+      - name: Lint JSON files
+        run: >-
+          find .
+          -name '*.json' -print0
+          | xargs -0 -n1 jq empty
+
+  shell:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install shellcheck -y
+      - name: Lint Shell Scripts
+        run: >-
+          find .
+          -name '*.sh' -not -path './.dotter/*' -print0
+          | xargs -0 shellcheck
+
+  vim:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install vint
+        run: |
+          pip install vim-vint
+      - name: Lint Vim configuration files
+        run: >-
+          find .
+          -name '.vimrc'
+          -o -name '.vim'
+          -o -name '.ideavimrc' -type f
+          | xargs vint
+
+  yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Install yamllint
+        run: |
+          pip install yamllint
+      - name: Lint YAML files
+        run: |
+          yamllint -d relaxed .
