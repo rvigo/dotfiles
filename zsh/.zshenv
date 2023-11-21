@@ -7,7 +7,7 @@ export LS_COLORS=$LS_COLORS:'ow=30;42:tw=30;42'
 
 export GPG_TTY=$TTY
 export EDITOR=$(which vi)
-export VISUAL=$(which nvim)
+export VISUAL=$(which vi)
 export HOMEBREW_NO_ANALYTICS=1
 export JAVA_HOME=$HOME/.sdkman/candidates/java/current
 export CARGO_HOME=$HOME/.cargo/env

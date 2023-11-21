@@ -14,13 +14,6 @@ autoload -Uz vcs_info
 autoload -Uz compinit
 compinit
 
-# function update_title {
-#     case "$TERM" in
-#         xterm*|rxvt*|alacritty*) print -Pn "\e]2;%n@${HOST%%.*}: %~\a" ;;
-#     esac
-# }
-# update_title
-
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
@@ -41,11 +34,13 @@ ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=( forward-char forward-word end-of-line 
 
 # Plugins
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOME/.zsh/plugins/git/git-prompt.zsh
-source $HOME/.zsh/plugins/dircycle/dircycle.zsh
-source $HOME/.zsh/plugins/command-not-found/command-not-found.zsh
-source $HOME/.zsh/plugins/aws/aws.zsh
-source $HOME/.zsh/plugins/zsh-interactive-cd/zsh-interactive-cd.zsh
+
+ZSH_PLUGINS=$HOME/.zsh/plugins
+source $ZSH_PLUGINS/git/git-prompt.zsh
+source $ZSH_PLUGINS/dircycle/dircycle.zsh
+source $ZSH_PLUGINS/command-not-found/command-not-found.zsh
+source $ZSH_PLUGINS/aws/aws.zsh
+source $ZSH_PLUGINS/zsh-interactive-cd/zsh-interactive-cd.zsh
 source $HOME/.config/cl/cl-exec-widget
 
 PROMPT="%(?:%F{green%}> :%F{red%}> )"
@@ -64,6 +59,3 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias nv='nvim'
-source /home/rafavigo/.config/cl/cl-exec-widget
-source /home/rafavigo/.config/cl/cl-exec-widget
-source /home/rafavigo/.config/cl/cl-exec-widget
