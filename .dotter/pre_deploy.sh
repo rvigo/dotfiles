@@ -38,8 +38,8 @@ fi
     coreutils \
     gpg2 
 
-    brew install --cask --quiet iterm2 \ 
-    visual-studio-code \ 
+    brew install --cask --quiet iterm2 \
+    visual-studio-code \
     intellij-idea-ce \
     rectangle
 {{/if}}
