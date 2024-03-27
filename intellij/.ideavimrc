@@ -3,15 +3,16 @@ set clipboard+=unnamed
 set incsearch
 set laststatus=2
 set showmode
-set vim-paragraph-motion
+set ideajoin
 set ideastatusicon=gray
 
 " Plugins
 Plug 'machakann/vim-highlightedyank'
 Plug 'tpope/vim-commentary'
+Plug 'preservim/nerdtree'
 
 " =============== gradle ===============
-map <leader>ge  <Action>(Gradle.ExecuteTask)
+map <leader>ge <Action>(Gradle.ExecuteTask)
 
 " =============== goto ===============
 nnoremap gm :action GotoSuperMethod<CR>
@@ -27,20 +28,35 @@ nmap <Tab> <Action>(NextTab)
 
 nmap <leader>v :vsplit<CR>
 nmap <leader>h :split<CR>
+nmap <M-i> <Action>(PrevSplitter)
+nmap <M-o> <Action>(NextSplitter)
 
 " =============== line movement ===============
 nnoremap H ^
 vnoremap H ^
 nnoremap L $
 vnoremap L $
-
-" jump 10 lines up and down with ctrl-k and ctrl-j
-nnoremap <C-k> 5k
-nnoremap <C-j> 5j
+nnoremap J }
+vnoremap J }
+nnoremap K {
+vnoremap K {
 
 " move lines up and down
 " vnoremap K :m '<-2<CR>gv=gv
-vnoremap K :action MoveStatementUp<CR>
+vnoremap <C-k> :action MoveStatementUp<CR>
+
+" nnoremap K :m .-2<CR>==
+nnoremap <C-k> :action MoveLineUp<CR>
+
+" nnoremap J :m .+1<CR>==
+nnoremap <C-j> :action MoveLineDown<CR>
+
+" vnoremap J :m '>+1<CR>gv=gv
+vnoremap <C-j> :action MoveStatementDown<CR>
+
+" =============== errors ===============
+noremap <leader>e :action GotoNextError<CR>
+noremap <leader>E :action GotoPreviousError<CR>
 
 " nnoremap K :m .-2<CR>==
 nnoremap K :action MoveLineUp<CR>
@@ -70,6 +86,9 @@ noremap <leader>co :action OptimizeImports<CR>
 " reformat & optimize
 noremap <leader>ca :action ReformatCode<CR> :action OptimizeImports<CR>
 
+" rename
+nnoremap <Leader>re :action RenameElement<CR>
+
 " Easier indentation
 vnoremap < <gv
 vnoremap > >gv
@@ -88,12 +107,25 @@ nmap <leader>a ggVG
 " =============== terminal ===============
 noremap <leader>t :action ActivateTerminalToolWindow<CR>
 
+" =============== buffer ===============
+nmap <leader>xx <Action>(CloseContent)
+nmap <leader>xa <Action>(CloseAllEditors)
+nmap <leader>xo <Action>(CloseAllEditorsButActive)
+nmap <leader>xp <Action>(CloseAllUnpinnedEditors)
+nmap <leader>p <Action>(PinActiveEditorTab)
+
 " =============== others ===============
 " exists insert mode with JJ
 inoremap jj <ESC>:set rnu<CR>
 
 " removes search highlight
 nnoremap <Space> :noh<CR>
+
+" menu
+nmap <leader>mc <Action>(CodeMenu)
+nmap <leader>mf <Action>(FindMenuGroup)
+nmap <leader>mw <Action>(ToolWindowsGroup)
+nmap <leader>k <Action>(QuickJavaDoc)
 
 " =============== arrows ===============
 nnoremap <Down> <Nop>
@@ -105,3 +137,7 @@ vnoremap <Down> <Nop>
 vnoremap <Left> <Nop>
 vnoremap <Right> <Nop>
 vnoremap <Up> <Nop>
+
+" ========== NERDTree (file explorer)
+" press `q` to close
+map <leader>f :NERDTree<CR>
