@@ -15,27 +15,192 @@
         "<C-a>": false,
         "<C-f>": false,
         "<C-d>": false,
-        "<C-y>": false
+        "<C-y>": false,
+        "<C-.>": false,
+        "<C-w>": false
     },
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<Leader>",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
+        }
+    ],
     "vim.normalModeKeyBindings": [
         {
             "before": [
-                "c-h"
+                "L"
             ],
             "after": [
-                "g",
-                "T"
+                "$"
             ]
         },
         {
             "before": [
-                "c-l"
+                "H"
             ],
             "after": [
+                "^"
+            ]
+        },
+        {
+            "before": [
+                "<Tab>"
+            ],
+            "commands": [
+                "workbench.action.nextEditor"
+            ]
+        },
+        {
+            "before": [
+                "<S-Tab>"
+            ],
+            "commands": [
+                "workbench.action.previousEditor"
+            ]
+        },
+        {
+            "before": [
+                "<Leader>",
+                "a"
+            ],
+            "commands": [
+                "workbench.action.showCommands"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ],
+            "when": [
+                "editorHasDefinitionProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.goToReferences"
+            ],
+            "when": [
+                "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "R"
+            ],
+            "commands": [
+                "references-view.findReferences"
+            ],
+            "when": [
+                "editorHasReferenceProvider && editorTextFocus && !inReferenceSearchEditor && !isInEmbeddedEditor"
+            ]
+        },
+        {
+            "before": [
                 "g",
                 "t"
+            ],
+            "commands": [
+                "editor.action.peekTypeDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "T"
+            ],
+            "commands": [
+                "editor.action.goToTypeDefinition"
             ]
         }
     ],
-    "redhat.telemetry.enabled": false
+    "vim.operatorPendingModeKeyBindings": [],
+    "vim.visualModeKeyBindings": [
+        {
+            "before": [
+                ">"
+            ],
+            "commands": [
+                "editor.action.indentLines"
+            ]
+        },
+        {
+            "before": [
+                "<"
+            ],
+            "commands": [
+                "editor.action.outdentLines"
+            ]
+        }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<Leader>",
+                "r",
+                "e"
+            ],
+            "commands": [
+                "editor.action.rename"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "v"
+            ],
+            "commands": [
+                {
+                    "command": "workbench.action.splitEditorRight"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "h"
+            ],
+            "commands": [
+                {
+                    "command": "workbench.action.splitEditorDown"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "e"
+            ],
+            "commands": [
+                {
+                    "command": "editor.action.marker.next"
+                }
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "E"
+            ],
+            "commands": [
+                {
+                    "command": "editor.action.marker.prev"
+                }
+            ]
+        }
+    ],
+    "git.autofetch": true
 }
