@@ -6,16 +6,10 @@ os = "linux"
 depends = ["linux"]
 
 [linux]
-depends = [
-	"shell",
-	"zsh",
-	"nvim",
-    "cl",
-	"intellij"
-]
+depends = ["shell", "zsh", "nvim", "cl", "intellij"]
 
 [shell.files]
-"git/.gitconfig" = "~/.gitconfig"
+"git/.gitconfig" = { target = "~/.gitconfig", type = "template" }
 
 [zsh]
 depends = ["shell"]
