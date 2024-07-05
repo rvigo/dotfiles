@@ -35,7 +35,7 @@ function update_current_git_vars() {
     unset __CURRENT_GIT_STATUS
 
     ## https://github.com/rvigo/gitstatus
-    local gitstatus="$__GIT_PROMPT_DIR/gitstatus"
+    local gitstatus="$__GIT_PROMPT_DIR/_gitstatus"
     _GIT_STATUS=$(${gitstatus} 2>/dev/null)
 
     __CURRENT_GIT_STATUS=("${(@s: :)_GIT_STATUS}")
