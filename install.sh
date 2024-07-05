@@ -70,9 +70,10 @@ run_dotter() {
     fi
 }
 
+clone_repo
 install_rust
 install_dotter
-clone_repo
+
 
 select_os
 
