@@ -38,15 +38,11 @@ install_dotter() {
 }
 
 clone_repo() {
-    if [ -z "$CI" ];then
-        if [ ! -d "$DOTFILES_DIR" ]; then
-            echo "Cloning rvigo/dotfiles to $DOTFILES_DIR ..."
-            git clone https://github.com/rvigo/dotfiles.git "$DOTFILES_DIR"
-        else
-            echo "The $DOTFILES_DIR directory already exists. Skipping clone."
-        fi
-    else 
-        echo "Skipping repo clone step (running in a CI env)"
+    if [ ! -d "$DOTFILES_DIR" ]; then
+        echo "Cloning rvigo/dotfiles to $DOTFILES_DIR ..."
+        git clone https://github.com/rvigo/dotfiles.git "$DOTFILES_DIR"
+    else
+        echo "The $DOTFILES_DIR directory already exists. Skipping clone."
     fi
 }
 
@@ -63,11 +59,7 @@ select_os() {
 
 run_dotter() {
     echo "Running dotter..."
-    if [ -n "$CI" ]; then
-        dotter -l ./.dotter/"$DOTTER_CONFIG" --force
-    else
-        dotter -l "$DOTTER_CONFIG_FOLDER"/"$DOTTER_CONFIG" --force
-    fi
+    dotter -l "$DOTTER_CONFIG_FOLDER"/"$DOTTER_CONFIG" --force
 }
 
 clone_repo
