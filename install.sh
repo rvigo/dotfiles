@@ -55,17 +55,19 @@ select_os() {
         echo "Unsupported operating system: $OS"
         exit 1
     fi
+
+    echo "Selected OS: $OS"
 }
 
 run_dotter() {
     echo "Running dotter..."
+    echo "config: $DOTTER_CONFIG_FOLDER/$DOTTER_CONFIG"
     dotter -l "$DOTTER_CONFIG_FOLDER"/"$DOTTER_CONFIG" --force
 }
 
 clone_repo
 install_rust
 install_dotter
-
 
 select_os
 
