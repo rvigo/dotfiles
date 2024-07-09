@@ -30,7 +30,7 @@ install_rust() {
 install_dotter() {
     echo "Installing dotter"
     if ! command_exists "dotter"; then
-        cargo install dotter --quiet
+        cargo install dotter 
         echo "dotter has been installed."
     else
         echo "dotter is already installed."
