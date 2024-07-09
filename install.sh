@@ -61,8 +61,9 @@ select_os() {
 
 run_dotter() {
     echo "Running dotter..."
-    echo "config: $DOTTER_CONFIG_FOLDER/$DOTTER_CONFIG"
-    dotter -l "$DOTTER_CONFIG_FOLDER"/"$DOTTER_CONFIG" --force
+    local_config="$DOTTER_CONFIG_FOLDER/$DOTTER_CONFIG"
+    global_config="$DOTTER_CONFIG_FOLDER/global.toml"
+    dotter -l $local_config -g $global_config --force
 }
 
 clone_repo
