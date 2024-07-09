@@ -12,7 +12,7 @@ command_exists() {
 }
 
 DOTFILES_DIR="$HOME/.dotfiles"
-DOTTER_CONFIG_FOLDER="$DOTFILES_DIR/.dotter/include"
+DOTTER_CONFIG_FOLDER="$DOTFILES_DIR/.dotter"
 OS=$(uname -s)
 
 install_rust() {

@@ -4,8 +4,6 @@ set -e
 
 echo "Running pre deploy script"
 
-. $(pwd)/.dotter/utils.sh
-
 # Check if Homebrew is installed
 if ! command_exists "brew"; then
     echo "Homebrew is not installed, installing now..."
